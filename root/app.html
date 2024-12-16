@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Spaceship Adventure</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #000428, #004e92); /* Space-themed background */
+            color: white;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+        }
+
+        .navbar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            background: #FFD700;
+            color: black;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .navbar a:hover {
+            transform: scale(1.1);
+            background-color: #FF5733;
+        }
+
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .game-over button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #FFD700;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .game-over button:hover {
+            background-color: #FF5733;
+        }
+
+        .game-info {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .game-info span {
+            font-weight: bold;
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="scratch.html">Scratch</a>
+        <a href="app.html">App</a>
+    </div>
+
+    <div class="game-info">
+        Score: <span id="score">0</span> | High Score: <span id="high-score">0</span>
+    </div>
+
+    <div class="game-over">
+        <h1>Game Over!</h1>
+        <p>Your Score: <span id="final-score"></span></p>
+        <button onclick="restartGame()">Restart</button>
+    </div>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Game variables
+        let spaceship = { x: 100, y: canvas.height / 2, size: 20, velocity: 0, gravity: 0.5 };
+        let obstacles = [];
+        let frame = 0;
+        let score = 0;
+        let highScore = localStorage.getItem("highScore") || 0;
+        let gameOver = false;
+
+        document.getElementById("high-score").textContent = highScore;
+
+        function createObstacle() {
+            const gap = 150;
+            const height = Math.random() * (canvas.height - gap - 100) + 50;
+            obstacles.push({
+                x: canvas.width,
+                topHeight: height,
+                bottomHeight: canvas.height - height - gap,
+                width: 50,
+            });
+        }
+
+        function updateObstacles() {
+            obstacles.forEach((obstacle, index) => {
+                obstacle.x -= 5; // Move obstacles left
+
+                // Draw top pipe
+                ctx.fillStyle = "#FF5733";
+                ctx.fillRect(obstacle.x, 0, obstacle.width, obstacle.topHeight);
+
+                // Draw bottom pipe
+                ctx.fillStyle = "#FF5733";
+                ctx.fillRect(obstacle.x, canvas.height - obstacle.bottomHeight, obstacle.width, obstacle.bottomHeight);
+
+                // Remove off-screen obstacles
+                if (obstacle.x + obstacle.width < 0) {
+                    obstacles.splice(index, 1);
+                    score++;
+                    document.getElementById("score").textContent = score;
+
+                    if (score > highScore) {
+                        highScore = score;
+                        localStorage.setItem("highScore", highScore);
+                        document.getElementById("high-score").textContent = highScore;
+                    }
+                }
+
+                // Collision detection
+                if (
+                    (spaceship.x + spaceship.size > obstacle.x && spaceship.x - spaceship.size < obstacle.x + obstacle.width &&
+                    (spaceship.y - spaceship.size < obstacle.topHeight || spaceship.y + spaceship.size > canvas.height - obstacle.bottomHeight)) ||
+                    spaceship.y + spaceship.size > canvas.height || spaceship.y - spaceship.size < 0
+                ) {
+                    endGame();
+                }
+            });
+        }
+
+        function drawSpaceship() {
+            ctx.fillStyle = "#00FF00";
+            ctx.beginPath();
+            ctx.arc(spaceship.x, spaceship.y, spaceship.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function endGame() {
+            gameOver = true;
+            document.querySelector(".game-over").style.display = "block";
+            document.getElementById("final-score").textContent = score;
+        }
+
+        function restartGame() {
+            obstacles = [];
+            score = 0;
+            document.getElementById("score").textContent = score;
+            spaceship = { x: 100, y: canvas.height / 2, size: 20, velocity: 0, gravity: 0.5 };
+            gameOver = false;
+            document.querySelector(".game-over").style.display = "none";
+            startGame();
+        }
+
+        function startGame() {
+            frame = 0;
+            gameLoop();
+        }
+
+        function gameLoop() {
+            if (gameOver) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawSpaceship();
+
+            spaceship.velocity += spaceship.gravity;
+            spaceship.y += spaceship.velocity;
+
+            if (frame % 100 === 0) createObstacle();
+            updateObstacles();
+
+            frame++;
+            requestAnimationFrame(gameLoop);
+        }
+
+        document.addEventListener("keydown", () => {
+            spaceship.velocity = -10; // Jump
+        });
+
+        startGame();
+    </script>
+</body>
+</html>

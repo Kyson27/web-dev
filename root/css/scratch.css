@@ -1,0 +1,269 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000000; /* Space black */
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* Navbar Styles */
+.scratch-navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(to right, #000000, #333333, #000000); /* Space-themed gradient */
+    padding: 10px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+    z-index: 1000;
+}
+
+.scratch-navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.scratch-navbar li {
+    display: inline;
+}
+
+.scratch-navbar a {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #FFD700; /* Lightsaber yellow */
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scratch-navbar a:hover {
+    color: #FFFFFF;
+    box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700; /* Lightsaber glow effect */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+}
+
+
+/* Header */
+.scratch-header {
+    text-align: center;
+    padding: 30px 20px;
+    background: linear-gradient(to bottom, #1a1a1a, #333333); /* Subtle dark gradient */
+    color: #FFD700; /* Golden text for Star Wars feel */
+    border-bottom: 2px solid #FFD700;
+}
+
+.scratch-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.scratch-header p {
+    font-size: 1.2rem;
+    margin-top: 0;
+}
+
+/* Rankings Section */
+.scratch-rankings {
+    padding: 40px 20px;
+}
+
+.scratch-rankings h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #FFD700;
+}
+
+.scratch-rankings ol {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+
+.scratch-rankings li {
+    background: #1a1a1a;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #FFD700; /* Default lightsaber border */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease; /* Only changes border color */
+}
+
+.scratch-rankings li:hover {
+    border-color: #00FF00; /* Green lightsaber border */
+}
+
+/* Ranking Number */
+.ranking-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #FFD700;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+
+/* Adjust layout of movie details */
+.scratch-movie-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-align content */
+    gap: 15px; /* Add spacing between items */
+    padding: 20px;
+    border: 2px solid #FFD700;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    max-width: 800px;
+    margin: 20px auto; /* Center-align the entire box */
+}
+
+/* Adjust spacing and centering of the media content */
+.scratch-media {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Space between the image and video */
+}
+
+
+/* DVD Cover Styling */
+.scratch-dvd-cover {
+    max-width: 150px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 15px 5px #FFD700; /* Default yellow glow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scratch-dvd-cover:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 0 20px 8px #FFD700; /* Stronger glow on hover */
+}
+
+/* Individual Glows */
+.scratch-dvd-cover.revenge {
+    box-shadow: 0 0 15px 5px #FF0000; /* Red glow */
+}
+
+.scratch-dvd-cover.jedi {
+    box-shadow: 0 0 15px 5px #00FF00; /* Green glow */
+}
+
+.scratch-dvd-cover.phantom {
+    box-shadow: 0 0 15px 5px #800080; /* Purple glow */
+}
+
+.scratch-dvd-cover.clones {
+    box-shadow: 0 0 15px 5px #0000FF; /* Blue glow */
+}
+
+.scratch-dvd-cover.hope {
+    box-shadow: 0 0 15px 5px #FFA500; /* Orange glow */
+}
+
+.scratch-dvd-cover.empire {
+    box-shadow: 0 0 15px 5px #FFFF00; /* Yellow glow */
+}
+
+.scratch-dvd-cover.rogue {
+    box-shadow: 0 0 15px 5px #00FFFF; /* Cyan glow */
+}
+
+.scratch-dvd-cover.force {
+    box-shadow: 0 0 15px 5px #FF69B4; /* Pink glow */
+}
+
+.scratch-dvd-cover.solo {
+    box-shadow: 0 0 15px 5px #8B0000; /* Dark red glow */
+}
+
+.scratch-dvd-cover.rise {
+    box-shadow: 0 0 15px 5px #1E90FF; /* Dodger blue glow */
+}
+
+.scratch-dvd-cover.last {
+    box-shadow: 0 0 15px 5px #4B0082; /* Indigo glow */
+}
+
+/* YouTube Iframe Styling */
+iframe {
+    border: 3px solid rgb(243, 224, 9); /* Border around iframe */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease; /* Only scales */
+}
+
+iframe:hover {
+    transform: scale(1.05); /* Enlarge on hover */
+}
+
+/* Movie Title */
+.scratch-movie-item h3 {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #FFD700; /* Lightsaber-inspired yellow */
+}
+
+/* Movie Review */
+.scratch-movie-details p {
+    font-size: 1rem;
+    margin: 10px 0 0;
+    color: #ffffff;
+    text-align: center;
+}
+
+.scratch-graph {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(to bottom, #1a1a1a, #333333); /* Space gradient */
+    color: #FFD700; /* Golden text for Star Wars feel */
+    border-top: 2px solid #FFD700;
+}
+
+.scratch-graph iframe {
+    max-width: 90%; /* Adjusts to 90% of the parent container's width */
+    max-height: 450px; /* Caps the height */
+    border: 2px solid #FFD700;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Footer */
+.scratch-footer {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(to bottom, #333333, #1a1a1a);
+    color: #FFD700;
+    border-top: 2px solid #FFD700;
+}
+
+.scratch-footer a {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.scratch-footer a:hover {
+    color: #00FF00;
+}
+
+html {
+    scroll-behavior: smooth;
+}

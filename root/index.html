@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kyson's Web Project" />
+    <meta name="author" content="Kyson Hildebrand" />
+    <title>Kyson's Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons -->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+        .simple-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(135, 198, 237, 0.8); /* Semi-transparent orange */
+            background: linear-gradient(to right, rgba(255, 223, 95, 0.0), rgba(82, 249, 255, 0.0)); /* Semi-transparent gradient */
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.5s ease, transform 0.3s ease;
+        }
+    
+        .simple-nav.hidden {
+            opacity: 0; /* Hidden when scrolling */
+            transform: translateY(-50px); /* Moves up for a fade-out effect */
+        }
+    
+        .simple-nav .nav-link {
+            font-family: 'Arial', sans-serif;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+    
+        .simple-nav .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+    
+</head>
+<body id="page-top">
+    <!-- Navigation -->
+    <div class="simple-nav" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="resume.html" class="nav-link">Resume</a>
+            <a href="scratch.html" class="nav-link">Scratch Page</a>
+            <a href="app.html" class="nav-link">App</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero text-center py-5">
+        <div class="container">
+            <h1 class="display-4">Hello, I'm Kyson</h1>
+            <p class="lead">Exploring creativity, technology, and storytelling with passion.</p>
+            <a href="#about-me" class="btn btn-primary btn-lg mt-3">Learn More About Me</a>
+        </div>
+    </header>
+
+    <!-- About Me Section -->
+    <section id="about-me" class="about-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center">
+                    <img src="assets/img/Kyson-about-me-photo.jpg" alt="A photo of Kyson" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-md-6">
+                    <h2>About Me</h2>
+                    <p>Hi, I'm Kyson! I'm a pre-marketing student at BYU, an aspiring web developer, and a passionate learner. I enjoy creating visually striking websites, solving problems, and sharing my journey with others.</p>
+                    <p>When I'm not coding, you can find me refining my basketball reffing skills, working on creative podcasts, or exploring new ways to grow and learn.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section py-5">
+        <div class="container text-center">
+            <h2 class="mb-4">My Projects</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Resume</h5>
+                            <p class="card-text">Explore my experience and skills in detail.</p>
+                            <a href="resume.html" class="btn btn-primary">View Resume</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Scratch Page</h5>
+                            <p class="card-text">See my custom HTML and CSS in action.</p>
+                            <a href="scratch.html" class="btn btn-primary">Explore Scratch Page</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Web App</h5>
+                            <p class="card-text">Check out my interactive app project.</p>
+                            <a href="app.html" class="btn btn-primary">Open App</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section py-5">
+        <div class="container text-center">
+            <h2 class="mb-4">Get in Touch</h2>
+            <p class="mb-4">Feel free to reach out to me for collaborations or inquiries!</p>
+            <a href="mailto:kyson@example.com" class="btn btn-primary">Email Me</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-center py-3" style="background: linear-gradient(to bottom, #BBE6ED, #9898fb); color: white;">
+        <p class="mb-0">&copy; 2024 Kyson's Web Project. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollY) {
+                navbar.classList.add('hidden'); // Hide navbar when scrolling down
+            } else {
+                navbar.classList.remove('hidden'); // Show navbar when scrolling up
+            }
+            lastScrollY = window.scrollY;
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
